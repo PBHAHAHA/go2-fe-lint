@@ -18,5 +18,6 @@
   },
   "scripts": {
     "test": "node ./__tests__/go2-fe-markdownlint-config.test.js"
-  }
+  },
+  "gitHead": "70f01c90cc102aaefe2a55c3fefe793acaabc28b"
 }
