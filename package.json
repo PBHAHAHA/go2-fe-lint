@@ -1,5 +1,6 @@
 {
-  "name": "go2-fe-lint",
+  "name": "go2-fe-spec",
+  "description": "购商云汇前端编码规范工程化",
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "^17.6.6",
@@ -9,6 +10,8 @@
     "vuepress-plugin-one-click-copy": "^1.0.6",
     "vuepress-plugin-zooming": "^1.1.8"
   },
+  "keywords": ["前端规范"],
+  "author": "pub",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
@@ -25,5 +28,9 @@
   "dependencies": {
     "@commitlint/config-conventional": "^17.6.6",
     "conventional-changelog-conventionalcommits": "^6.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
