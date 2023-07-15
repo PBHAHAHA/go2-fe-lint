@@ -1,0 +1,22 @@
+{
+  "name": "go2-fe-lint",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^6.6.2",
+    "vuepress": "^1.9.9",
+    "vuepress-plugin-one-click-copy": "^1.0.6",
+    "vuepress-plugin-zooming": "^1.1.8"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "init": "pnpm install",
+    "clean": "lerna clean && rm -rf node_modules",
+    "test": "lerna run test",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "deploy": "bash deploy.sh",
+    "publish": "lerna publish",
+    "lint": "markdownlint README.md",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+  }
+}
