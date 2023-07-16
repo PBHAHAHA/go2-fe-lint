@@ -1,23 +1,21 @@
 {
   "name": "go2-fe-markdownlint-config",
   "version": "0.0.2",
-  "description": "> TODO: description",
-  "author": "PBHAHAHA <314709923@qq.com>",
-  "homepage": "",
-  "license": "ISC",
-  "main": "lib/go2-fe-markdownlint-config.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
+  "main": "index.json",
+  "description": "购商云汇 文档规范",
+  "keywords": [
+    "encode",
+    "markdown",
+    "lint"
   ],
-  "publishConfig": {
-    "registry": "https://registry.npmmirror.com/"
+  "author": "pub",
+  "homepage": "https://github.com/PBHAHAHA/go2-fe-spec#readme",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PBHAHAHA/go2-fe-spec.git"
   },
-  "scripts": {
-    "test": "node ./__tests__/go2-fe-markdownlint-config.test.js"
-  },
-  "gitHead": "70f01c90cc102aaefe2a55c3fefe793acaabc28b"
+  "peerDependencies": {
+    "markdownlint": "^0.28.1"
+  }
 }

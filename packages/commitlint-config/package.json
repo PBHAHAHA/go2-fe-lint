@@ -1,26 +1,21 @@
 {
   "name": "go2-fe-commitlint-config",
   "version": "0.0.2",
-  "description": "> TODO: description",
-  "author": "PBHAHAHA <314709923@qq.com>",
-  "homepage": "",
-  "license": "ISC",
   "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
+  "description": "购商云汇 Git规范",
+  "keywords": [
+    "encode",
+    "commit",
+    "lint"
   ],
-  "publishConfig": {
-    "registry": "https://registry.npmmirror.com/"
-  },
-  "scripts": {
-    "test": "node ./__tests__/go2-fe-commitlint-config.test.js"
+  "author": "pub",
+  "homepage": "https://github.com/PBHAHAHA/go2-fe-spec#readme",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PBHAHAHA/go2-fe-spec.git"
   },
   "dependencies": {
-    "conventional-changelog-conventionalcommits": "^6.1.0"
-  },
-  "gitHead": "70f01c90cc102aaefe2a55c3fefe793acaabc28b"
+    "conventional-changelog-conventionalcommits": "^4.5.0"
+  }
 }
