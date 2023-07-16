@@ -14,4 +14,8 @@ module.exports = {
       'type-empty': [2, 'never'],
       'type-enum': [2, 'always', ['feat', 'fix', 'docs', 'style', 'test', 'refactor', 'chore', 'revert']],
     },
+    messages: {
+      // 自定义错误提示信息
+      'type-enum': '提交类型必须为feat(新功能)、fix(bug修复)、docs(文档变更)、style(样式)、test(测试)、refactor(重构)、chore(杂项)或revert(还原)',
+    }
   };
