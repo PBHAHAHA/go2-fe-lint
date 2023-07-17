@@ -8,7 +8,7 @@ export default defineConfig4CustomTheme({
       description: '前端编码规范工程化',
     },
   },
-  base: '/demo/',
+  base: '/go2-fe-spec/',
   themeConfig: {
     nav: [
       { text: '首页', link: '/index.md' },
@@ -42,7 +42,7 @@ export default defineConfig4CustomTheme({
       },
       {
         text: '脚手架',
-        items: [{ text: 'encode-fe-lint', link: '/cli/encode-fe-lint.md' }],
+        items: [{ text: 'go2-fe-spec', link: '/cli/go2-fe-spec.md' }],
       },
     ],
     sidebar: [
@@ -96,22 +96,22 @@ export default defineConfig4CustomTheme({
       },
       {
         title: '脚手架',
-        children: [{ title: 'encode-fe-lint', path: '/cli/encode-fe-lint.md' }],
+        children: [{ title: 'go2-fe-spec', path: '/cli/go2-fe-spec.md' }],
       },
     ],
-    repo: 'encode-studio-fe/fe-spec',
+    repo: 'pbhahaha/go2-fe-spec',
     searchMaxSuggestions: 10,
     docsDir: 'docs',
     footer: {
       createYear: 2023,
       copyrightInfo:
-        'encode studio | <a href="https://github.com/encode-studio-fe/fe-spec" target="_blank">github</a>',
+        'encode studio | <a href="https://github.com/pbhahaha/go2-fe-spec" target="_blank">github</a>',
     },
 
     extendFrontmatter: {
       author: {
         name: 'pub',
-        link: 'https://github.com/encode-studio-fe/fe-sepc',
+        link: 'https://github.com/pbhahaha/go2-fe-spec',
       },
     },
   },
