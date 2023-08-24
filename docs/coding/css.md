@@ -44,8 +44,7 @@ author:
   ```css
   /* bad */
   .selector {
-        padding-left: 15px;
-  }
+        padding-left: 15px;}
 
   /* good */
   .selector {
@@ -57,7 +56,7 @@ author:
 
   ```css
   /* bad */
-  .selector {
+  .selector{
     padding-left: 15px;
   }
 
@@ -72,8 +71,8 @@ author:
   ```css
   /* bad */
   .selector{
-    margin-top: 10px;
-    padding-left: 15px;
+    margin-top : 10px;
+    padding-left : 15px;
   }
 
   /* good */
