@@ -1,8 +1,8 @@
 {
-  "name": "go2-fe-stylelint-config",
+  "name": "eslint-config",
   "version": "0.0.3",
-  "description": "购商云汇 css样式规范",
-  "author": "pub",
+  "description": "> TODO: description",
+  "author": "PBHAHAHA <314709923@qq.com>",
   "homepage": "https://github.com/PBHAHAHA/go2-fe-spec#readme",
   "license": "ISC",
   "main": "index.js",
@@ -18,16 +18,9 @@
     "url": "git+https://github.com/PBHAHAHA/go2-fe-spec.git"
   },
   "scripts": {
-    "test": "jest"
+    "test": "node ./__tests__/eslint-config.test.js"
   },
   "bugs": {
     "url": "https://github.com/PBHAHAHA/go2-fe-spec/issues"
-  },
-  "dependencies": {
-    "stylelint": "^15.10.1",
-    "stylelint-scss": "^5.0.1"
-  },
-  "devDependencies": {
-    "jest": "^29.6.1"
   }
 }
