@@ -4,7 +4,7 @@
  * @link https://eslint.vuejs.org/rules/
  */
 
- module.exports = {
+module.exports = {
     parser: 'vue-eslint-parser',
     plugins: ['vue'],
     rules: {
@@ -94,4 +94,4 @@
       'vue/valid-v-pre': 'error',
       'vue/valid-v-show': 'error',
     },
-  };
+};
