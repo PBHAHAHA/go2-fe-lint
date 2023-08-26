@@ -27,7 +27,7 @@
     "publish": "lerna publish",
     "lint": "markdownlint README.md",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "aadd": "lerna create eslint-config"
+    "publish-again": "lerna publish from-package"
   },
   "dependencies": {
     "@commitlint/config-conventional": "^17.6.6",
