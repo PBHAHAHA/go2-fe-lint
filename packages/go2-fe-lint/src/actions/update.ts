@@ -1,151 +1,67 @@
-import path from 'path';
-import fs from 'fs-extra';
-
-// 读取 package.json
-const pkg: Record<string, any> = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf8'),
-);
-
-export enum UNICODE {
-  success = '\u2714', // ✔
-  failure = '\u2716', // ✖
-}
 
 /**
- * 包名
- */
-export const PKG_NAME: string = pkg.name;
+ * child_process 是 Node.js 中的一个内置模块，它提供了一种创建子进程的机制，可以执行系统命令、运行 shell 脚本等
+ * child_process.execSync() 是 Node.js 中的一种同步执行系统命令的方法。
+ *  */ 
+import { execSync } from 'child_process';
+import ora from 'ora';
+import log from '../utils/log';
+import npmType from '../utils/npm-type';
+import { PKG_NAME, PKG_VERSION } from '../utils/constants';
 
 /**
- * 包版本号
+ * 检查最新版本号
  */
-export const PKG_VERSION: string = pkg.version;
+const checkLatestVersion = async (): Promise<string | null> => {
+  const npm = await npmType;
+  // 开启子进程同步检查出包的版本
+  const latestVersion = execSync(`${npm} view ${PKG_NAME} version`).toString('utf-8').trim();
+
+  if (PKG_VERSION === latestVersion) return null;
+
+  const compareArr = PKG_VERSION.split('.').map(Number); // 当前包版本号的拆分数组:
+  const beComparedArr = latestVersion.split('.').map(Number);
+
+  // 依次比较版本号每一位大小
+  for (let i = 0; i < compareArr.length; i++) {
+    if (compareArr[i] > beComparedArr[i]) {
+      return null;
+    } else if (compareArr[i] < beComparedArr[i]) {
+      return latestVersion;
+    }
+  }
+};
 
 /**
- * 项目类型
+ * 检查包的版本
+ * @param install - 自动安装最新包
  */
-export const PROJECT_TYPES: Array<{ name: string; value: string }> = [
-  {
-    name: '未使用 React、Vue、Node.js 的项目（JavaScript）',
-    value: 'index',
-  },
-  {
-    name: '未使用 React、Vue、Node.js 的项目（TypeScript）',
-    value: 'typescript',
-  },
-  {
-    name: 'React 项目（JavaScript）',
-    value: 'react',
-  },
-  {
-    name: 'React 项目（TypeScript）',
-    value: 'typescript/react',
-  },
-  {
-    name: 'Rax 项目（JavaScript）',
-    value: 'rax',
-  },
-  {
-    name: 'Rax 项目（TypeScript）',
-    value: 'typescript/rax',
-  },
-  {
-    name: 'Vue 项目（JavaScript）',
-    value: 'vue',
-  },
-  {
-    name: 'Vue 项目（TypeScript）',
-    value: 'typescript/vue',
-  },
-  {
-    name: 'Node.js 项目（JavaScript）',
-    value: 'node',
-  },
-  {
-    name: 'Node.js 项目（TypeScript）',
-    value: 'typescript/node',
-  },
-  {
-    name: '使用 ES5 及之前版本 JavaScript 的老项目',
-    value: 'es5',
-  },
-];
+export default async (install = true) => {
+  const checking = ora(`[${PKG_NAME}] 正在检查最新版本...`);
+  checking.start();
 
-/**
- * eslint 扫描文件扩展名
- */
-export const ESLINT_FILE_EXT: string[] = ['.js', '.jsx', '.ts', '.tsx', '.vue'];
+  try {
+    const npm = await npmType;
+    const latestVersion = await checkLatestVersion();
+    checking.stop();
 
-/**
- * eslint 扫描忽略的文件或文件目录
- * 需要同步到 config/.eslintignore.ejs
- */
-export const ESLINT_IGNORE_PATTERN: string[] = [
-  'node_modules/',
-  'build/',
-  'dist/',
-  'coverage/',
-  'es/',
-  'lib/',
-  '**/*.min.js',
-  '**/*-min.js',
-  '**/*.bundle.js',
-];
+    if (latestVersion && install) {
+      const update = ora(`[${PKG_NAME}] 存在新版本，将升级至 ${latestVersion}`);
 
-/**
- * stylelint 扫描文件扩展名
- */
-export const STYLELINT_FILE_EXT: string[] = ['.css', '.scss', '.less', '.acss'];
+      update.start();
 
-/**
- * stylelint 扫描忽略的文件或文件目录
- */
-export const STYLELINT_IGNORE_PATTERN: string[] = [
-  'node_modules/',
-  'build/',
-  'dist/',
-  'coverage/',
-  'es/',
-  'lib/',
-  '**/*.min.css',
-  '**/*-min.css',
-  '**/*.bundle.css',
-];
+      execSync(`${npm} i -g ${PKG_NAME}`);
 
-/**
- * markdownLint 扫描文件扩展名
- */
-export const MARKDOWN_LINT_FILE_EXT: string[] = ['.md'];
-
-/**
- * markdownLint 扫描忽略的文件或文件目录
- */
-export const MARKDOWN_LINT_IGNORE_PATTERN: string[] = [
-  'node_modules/',
-  'build/',
-  'dist/',
-  'coverage/',
-  'es/',
-  'lib/',
-];
-
-/**
- * Prettier 扫描文件扩展名
- */
-export const PRETTIER_FILE_EXT = [
-  ...STYLELINT_FILE_EXT,
-  ...ESLINT_FILE_EXT,
-  ...MARKDOWN_LINT_FILE_EXT,
-];
-
-/**
- * Prettier 扫描忽略的文件或文件目录
- */
-export const PRETTIER_IGNORE_PATTERN: string[] = [
-  'node_modules/**/*',
-  'build/**/*',
-  'dist/**/*',
-  'lib/**/*',
-  'es/**/*',
-  'coverage/**/*',
-];
+      update.stop();
+    } else if (latestVersion) {
+      log.warn(
+        `最新版本为 ${latestVersion}，本地版本为 ${PKG_VERSION}，请尽快升级到最新版本。\n你可以执行 ${npm} install -g ${PKG_NAME}@latest 来安装此版本\n`,
+      );
+    } else if (install) {
+      log.info(`当前没有可用的更新`);
+    }
+  } catch (e) {
+    checking.stop();
+    log.error(e);
+  }
+};
