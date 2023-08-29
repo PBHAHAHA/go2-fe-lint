@@ -105,7 +105,7 @@ export default defineConfig4CustomTheme({
     footer: {
       createYear: 2023,
       copyrightInfo:
-        'encode studio | <a href="https://github.com/pbhahaha/go2-fe-spec" target="_blank">github</a>',
+        'go2 | <a href="https://github.com/pbhahaha/go2-fe-spec" target="_blank">github</a>',
     },
 
     extendFrontmatter: {

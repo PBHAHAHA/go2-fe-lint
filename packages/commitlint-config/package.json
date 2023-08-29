@@ -4,7 +4,7 @@
   "main": "index.js",
   "description": "购商云汇 Git规范",
   "keywords": [
-    "encode",
+    "go2",
     "commit",
     "lint"
   ],

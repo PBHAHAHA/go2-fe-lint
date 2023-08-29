@@ -1,5 +1,8 @@
 
 /**
+ * @description 检查包更新
+ */
+/**
  * child_process 是 Node.js 中的一个内置模块，它提供了一种创建子进程的机制，可以执行系统命令、运行 shell 脚本等
  * child_process.execSync() 是 Node.js 中的一种同步执行系统命令的方法。
  *  */ 

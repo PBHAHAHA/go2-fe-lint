@@ -4,7 +4,7 @@
   "main": "index.json",
   "description": "购商云汇 文档规范",
   "keywords": [
-    "encode",
+    "go2",
     "markdown",
     "lint"
   ],
