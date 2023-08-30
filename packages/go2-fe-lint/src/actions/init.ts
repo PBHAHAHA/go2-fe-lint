@@ -10,6 +10,7 @@ import generateTemplate from '../utils/generate-template';
 import { PROJECT_TYPES, PKG_NAME } from '../utils/constants';
 import type { InitOptions, PKG } from '../types';
 
+// 执行init的步骤
 let step = 0;
 
 /**
@@ -70,15 +71,15 @@ const chooseEnablePrettier = async (): Promise<boolean> => {
 };
 
 export default async (options: InitOptions) => {
-  const cwd = options.cwd || process.cwd();
-  const isTest = process.env.NODE_ENV === 'test';
-  const checkVersionUpdate = options.checkVersionUpdate || false;
-  const disableNpmInstall = options.disableNpmInstall || false;
-  const config: Record<string, any> = {};
-  const pkgPath = path.resolve(cwd, 'package.json');
+  const cwd = options.cwd || process.cwd();// 获取执行路径
+  const isTest = process.env.NODE_ENV === 'test'; // 是否是测试环境
+  const checkVersionUpdate = options.checkVersionUpdate || false;// 检查是否自动更新
+  const disableNpmInstall = options.disableNpmInstall || false;//是否强制安装
+  const config: Record<string, any> = {}; // 存储用户交互的值
+  const pkgPath = path.resolve(cwd, 'package.json'); // 获取package.json 的路径
   let pkg: PKG = fs.readJSONSync(pkgPath);
 
-  // 版本检查
+  // cli是否更新
   if (!isTest && checkVersionUpdate) {
     await update(false);
   }

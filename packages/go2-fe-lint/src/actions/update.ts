@@ -7,7 +7,7 @@
  * child_process.execSync() 是 Node.js 中的一种同步执行系统命令的方法。
  *  */ 
 import { execSync } from 'child_process';
-import ora from 'ora';
+import ora from 'ora'; // loading 包
 import log from '../utils/log';
 import npmType from '../utils/npm-type';
 import { PKG_NAME, PKG_VERSION } from '../utils/constants';
@@ -48,12 +48,12 @@ export default async (install = true) => {
     const latestVersion = await checkLatestVersion();
     checking.stop();
 
-    if (latestVersion && install) {
+    if (latestVersion && install) { // 有最新版本就下载安装
       const update = ora(`[${PKG_NAME}] 存在新版本，将升级至 ${latestVersion}`);
 
       update.start();
 
-      execSync(`${npm} i -g ${PKG_NAME}`);
+      execSync(`${npm} i -g ${PKG_NAME}`); // 启动子进程执行安装
 
       update.stop();
     } else if (latestVersion) {
