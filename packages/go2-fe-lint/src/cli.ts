@@ -7,12 +7,12 @@ import { program } from 'commander';
 import spawn from 'cross-spawn';
 import { execSync } from 'child_process';
 import init from './actions/init';
-import scan from './actions/scan';
+// import scan from './actions/scan';
 import update from './actions/update';
 import log from './utils/log';
 import printReport from './utils/print-report';
 import npmType from './utils/npm-type';
-import { getCommitFiles, getAmendFiles } from './utils/git';
+// import { getCommitFiles, getAmendFiles } from './utils/git';
 import generateTemplate from './utils/generate-template';
 import { PKG_NAME, PKG_VERSION } from './utils/constants';
 
