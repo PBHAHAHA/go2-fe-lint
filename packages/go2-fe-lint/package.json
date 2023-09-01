@@ -1,9 +1,9 @@
 {
   "name": "go2-fe-lint",
-  "version": "0.0.8",
+  "version": "0.0.8", 
   "description": "> TODO: description",
   "author": "PBHAHAHA <314709923@qq.com>",
-  "homepage": "https://github.com/PBHAHAHA/go2-fe-lint#readme",
+  "homepage": "https://github.com/PBHAHAHA/go2-fe-spec#readme",
   "license": "ISC",
   "bin": "./lib/cli.js",
   "main": "./lib/index.js",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PBHAHAHA/go2-fe-lint.git"
+    "url": "git+https://github.com/PBHAHAHA/go2-fe-spec.git"
   },
   "scripts": {
     "dev": "npm run copyfiles && tsc -w",
@@ -26,7 +26,7 @@
     "coverage": "nyc jest --silent --forceExit"
   },
   "bugs": {
-    "url": "https://github.com/PBHAHAHA/go2-fe-lint/issues"
+    "url": "https://github.com/PBHAHAHA/go2-fe-spec/issues"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
