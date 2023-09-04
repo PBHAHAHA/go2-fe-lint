@@ -5,7 +5,9 @@
   "author": "PBHAHAHA <314709923@qq.com>",
   "homepage": "https://github.com/PBHAHAHA/go2-fe-spec#readme",
   "license": "ISC",
-  "bin": "./lib/cli.js",
+  "bin": {
+    "gogoo": "./lib/cli.js"
+  },
   "main": "./lib/index.js",
   "directories": {
     "lib": "lib",
@@ -20,7 +22,7 @@
   },
   "scripts": {
     "dev": "npm run copyfiles && tsc -w",
-    "build": "rm -rf lib && npm run copyfiles && tsc",
+    "build": "npm run copyfiles && tsc",
     "copyfiles": "copyfiles -a -u 1 \"src/config/**\" lib",
     "test": "npm run build && jest",
     "coverage": "nyc jest --silent --forceExit"
@@ -81,6 +83,7 @@
     "glob": "^7.1.6",
     "go2-fe-commitlint-config": "workspace:^",
     "go2-fe-eslint-config": "workspace:^",
+    "go2-fe-lint": "^0.0.9",
     "go2-fe-markdownlint-config": "workspace:^",
     "go2-fe-stylelint-config": "workspace:^",
     "husky": "^3.1.0",

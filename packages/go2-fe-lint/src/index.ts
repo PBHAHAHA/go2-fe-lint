@@ -5,6 +5,7 @@ import { PKG_NAME } from './utils/constants';
 import printReport from './utils/print-report';
 import type { InitOptions, ScanOptions } from './types';
 
+// Omit 从一个给定的类型中排除某些属性，返回一个新的类型
 type IInitOptions = Omit<InitOptions, 'checkVersionUpdate'>;
 
 export const init = async (options: IInitOptions) => {
