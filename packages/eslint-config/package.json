@@ -14,6 +14,11 @@
     "type": "git",
     "url": "git+https://github.com/PBHAHAHA/go2-fe-spec.git"
   },
+  "exports": {
+    ".": "./index.js",
+    "./vue": "./vue.js",
+    "./rules/vue": "./rules/vue.js"
+  },
   "scripts": {
     "test": "node ./__tests__/eslint-config.test.js",
     "lint": "eslint ./"
