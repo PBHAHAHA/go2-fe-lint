@@ -3,11 +3,11 @@
   "description": "购商云汇前端编码规范工程化",
   "private": true,
   "devDependencies": {
-    "@commitlint/cli": "^17.6.6",
+    "@commitlint/cli": "^17.7.1",
     "husky": "^8.0.3",
-    "jest": "^29.6.1",
+    "jest": "^29.6.4",
     "lerna": "^6.6.2",
-    "vuepress": "^1.9.9",
+    "vuepress": "^1.9.10",
     "vuepress-plugin-one-click-copy": "^1.0.6",
     "vuepress-plugin-zooming": "^1.1.8"
   },
@@ -30,7 +30,7 @@
     "publish-again": "lerna publish from-package"
   },
   "dependencies": {
-    "@commitlint/config-conventional": "^17.6.6",
+    "@commitlint/config-conventional": "^17.7.0",
     "conventional-changelog-conventionalcommits": "^6.1.0"
   },
   "publishConfig": {
