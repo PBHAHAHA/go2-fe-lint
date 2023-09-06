@@ -3,15 +3,16 @@
  */
 import path from 'path';
 import fs from 'fs-extra';
+import logSymbols from 'log-symbols';
 
 // 读取 package.json
 const pkg: Record<string, any> = JSON.parse(
   fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf8'),
 );
 
-export enum UNICODE {
-  success = '\u2714', // ✔
-  fail = '\u2716', // ✖
+export const UNICODE = {
+  success: logSymbols.success, // ✔
+  fail: logSymbols.error, // ✖
 }
 
 /**

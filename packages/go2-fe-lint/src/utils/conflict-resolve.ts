@@ -1,3 +1,6 @@
+/**
+ * 处理init时，存在的冲突文件
+ */
 import path from 'path';
 import fs from 'fs-extra';
 import glob from 'glob';
@@ -5,6 +8,7 @@ import inquirer from 'inquirer';
 import log from './log';
 import { PKG_NAME } from './constants';
 import type { PKG } from '../types';
+// conflict-resolve 
 
 // 精确移除依赖
 const packageNamesToRemove = [
@@ -35,6 +39,7 @@ const packagePrefixesToRemove = [
  * @param cwd
  */
 const checkUselessConfig = (cwd: string): string[] => {
+  // glob.sync 返回一个 数组
   return []
     .concat(glob.sync('.eslintrc?(.@(yaml|yml|json))', { cwd }))
     .concat(glob.sync('.stylelintrc?(.@(yaml|yml|json))', { cwd }))
@@ -54,11 +59,11 @@ const checkReWriteConfig = (cwd: string) => {
   return glob
     .sync('**/*.ejs', { cwd: path.resolve(__dirname, '../config') })
     .map((name) => name.replace(/^_/, '.').replace(/\.ejs$/, ''))
-    .filter((filename) => fs.existsSync(path.resolve(cwd, filename)));
+    .filter((filename) => fs.existsSync(path.resolve(cwd, filename))); // existsSync 是检查路径是否存在，返回布尔值
 };
 
 export default async (cwd: string, rewriteConfig?: boolean) => {
-  const pkgPath = path.resolve(cwd, 'package.json');
+  const pkgPath = path.resolve(cwd, 'package.json'); // 获取package.json 的路径
   const pkg: PKG = fs.readJSONSync(pkgPath);
   const dependencies = [].concat(
     Object.keys(pkg.dependencies || {}),
@@ -69,8 +74,8 @@ export default async (cwd: string, rewriteConfig?: boolean) => {
       packageNamesToRemove.includes(name) ||
       packagePrefixesToRemove.some((prefix) => name.startsWith(prefix)),
   );
-  const uselessConfig = checkUselessConfig(cwd);
-  const reWriteConfig = checkReWriteConfig(cwd);
+  const uselessConfig = checkUselessConfig(cwd); // 检查是否有需要删除的文件
+  const reWriteConfig = checkReWriteConfig(cwd); // 检查是否有需要重写的文件
   const willChangeCount = willRemovePackage.length + uselessConfig.length + reWriteConfig.length;
 
   // 提示是否移除原配置

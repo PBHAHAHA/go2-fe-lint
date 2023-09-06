@@ -45,7 +45,7 @@ export interface ScanOptions {
   fix?: boolean;
   // 生成报告文件
   outputReport?: boolean;
-  // scan 时指定 encode-fe-lint config，优先级高于 encode-fe-lint.config.js
+  // scan 时指定 go2-fe-lint config，优先级高于 go2-fe-lint.config.js
   config?: Config;
 }
 
