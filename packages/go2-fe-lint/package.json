@@ -81,11 +81,11 @@
     "fast-glob": "^3.2.11",
     "fs-extra": "^9.0.1",
     "glob": "^7.1.6",
-    "go2-fe-commitlint-config": "workspace:^",
-    "go2-fe-eslint-config": "workspace:^",
+    "go2-fe-commitlint-config": "^0.0.12",
+    "go2-fe-eslint-config": "^0.0.12",
     "go2-fe-lint": "^0.0.12",
-    "go2-fe-markdownlint-config": "workspace:^",
-    "go2-fe-stylelint-config": "workspace:^",
+    "go2-fe-markdownlint-config": "^0.0.12",
+    "go2-fe-stylelint-config": "^0.0.12",
     "husky": "^3.1.0",
     "inquirer": "^7.3.3",
     "is-docker": "^2.1.1",
@@ -101,5 +101,6 @@
     "terminal-link": "^2.1.1",
     "text-table": "^0.2.0",
     "vue-eslint-parser": "^7.3.0"
-  }
+  },
+  "gitHead": "9f21a2426da4910bf9fc8c382a3f760084857980"
 }
