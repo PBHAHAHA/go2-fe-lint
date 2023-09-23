@@ -1,6 +1,6 @@
 {
   "name": "go2-fe-markdownlint-config",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "main": "index.json",
   "description": "购商云汇 文档规范",
   "keywords": [
