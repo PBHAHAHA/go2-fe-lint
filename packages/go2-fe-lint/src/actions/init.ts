@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs-extra';
 import inquirer from 'inquirer';
-import logSymbols from 'log-symbols';
+// import logSymbols from 'log-symbols';
 import spawn from 'cross-spawn';
 import update from './update';
 import npmType from '../utils/npm-type';
@@ -21,7 +21,7 @@ const chooseEslintType = async (): Promise<string> => {
   const { type } = await inquirer.prompt({
     type: 'list',
     name: 'type',
-    message: `♝ ${++step}. 请选择项目的语言（JS/TS）和框架（React/Vue）类型：`,
+    message: `---${++step}. 请选择项目的语言（JS/TS）和框架（React/Vue）类型：`,
     choices: PROJECT_TYPES,
   });
 
@@ -36,7 +36,7 @@ const chooseEnableStylelint = async (defaultValue: boolean): Promise<boolean> =>
   const { enable } = await inquirer.prompt({
     type: 'confirm',
     name: 'enable',
-    message: `♝ ${++step}. 是否需要使用 stylelint（若没有样式文件则不需要）：`,
+    message: `---${++step}. 是否需要使用 stylelint（若没有样式文件则不需要）：`,
     default: defaultValue,
   });
 
@@ -50,7 +50,7 @@ const chooseEnableMarkdownLint = async (): Promise<boolean> => {
   const { enable } = await inquirer.prompt({
     type: 'confirm',
     name: 'enable',
-    message: `♝ ${++step}. 是否需要使用 markdownlint（若没有 Markdown 文件则不需要）：`,
+    message: `---${++step}. 是否需要使用 markdownlint（若没有 Markdown 文件则不需要）：`,
     default: true,
   });
 
@@ -64,7 +64,7 @@ const chooseEnablePrettier = async (): Promise<boolean> => {
   const { enable } = await inquirer.prompt({
     type: 'confirm',
     name: 'enable',
-    message: `♝ ${++step}. 是否需要使用 Prettier 格式化代码：`,
+    message: `---${++step}. 是否需要使用 Prettier 格式化代码：`,
     default: true,
   });
 
@@ -123,13 +123,13 @@ export default async (options: InitOptions) => {
   if (!isTest) {
     log.info(`---${++step}. 检查并处理项目中可能存在的依赖和配置冲突`);
     pkg = await conflictResolve(cwd, options.rewriteConfig);
-    log.success(`---${step}. 已完成项目依赖和配置冲突检查处理 ${logSymbols.success}`);
+    log.success(`---${step}. 已完成项目依赖和配置冲突检查处理 ✔`);
 
     if (!disableNpmInstall) {
       log.info(`---${++step}. 安装依赖`);
       const npm = await npmType;
       spawn.sync(npm, ['i', '-D', PKG_NAME], { stdio: 'inherit', cwd });
-      log.success(`---${step}. 安装依赖成功 ${logSymbols.success}`);
+      log.success(`---${step}. 安装依赖成功 ${'✔'}`);
     }
   }
 
@@ -153,11 +153,11 @@ export default async (options: InitOptions) => {
   pkg.husky.hooks['pre-commit'] = `${PKG_NAME} commit-file-scan`;
   pkg.husky.hooks['commit-msg'] = `${PKG_NAME} commit-msg-scan`;
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-  log.success(`---${step}. 配置 git commit 检查点成功 ${logSymbols.success}`);
+  log.success(`---${step}. 配置 git commit 检查点成功 ${'✔'}`);
 
   log.info(`---${++step}. 写入配置文件`);
   generateTemplate(cwd, config);
-  log.success(`---${step}. 写入配置文件成功 ${logSymbols.success}`);
+  log.success(`---${step}. 写入配置文件成功 ${'✔'}`);
 
   // 完成信息
   const logs = [`${PKG_NAME} 初始化完成 :D`].join('\r\n');

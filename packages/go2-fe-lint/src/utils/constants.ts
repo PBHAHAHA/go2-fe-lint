@@ -3,7 +3,7 @@
  */
 import path from 'path';
 import fs from 'fs-extra';
-import logSymbols from 'log-symbols';
+// import logSymbols from 'log-symbols';
 
 // 读取 package.json
 const pkg: Record<string, any> = JSON.parse(
@@ -11,8 +11,8 @@ const pkg: Record<string, any> = JSON.parse(
 );
 
 export const UNICODE = {
-  success: logSymbols.success, // ✔
-  fail: logSymbols.error, // ✖
+  success: '✔', // ✔
+  fail: '✖', // ✖
 }
 
 /**
