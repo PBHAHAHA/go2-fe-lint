@@ -1,6 +1,6 @@
 {
   "name": "go2-fe-commitlint-config",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "main": "index.js",
   "description": "购商云汇 Git规范",
   "keywords": [
