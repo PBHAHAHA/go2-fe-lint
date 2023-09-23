@@ -106,11 +106,11 @@ export default async (options: InitOptions) => {
   }
 
   // 初始化 `enableMarkdownlint`
-  // if (typeof options.enableMarkdownlint === 'boolean') {
-  //   config.enableMarkdownlint = options.enableMarkdownlint;
-  // } else {
-  //   config.enableMarkdownlint = await chooseEnableMarkdownLint();
-  // }
+  if (typeof options.enableMarkdownlint === 'boolean') {
+    config.enableMarkdownlint = options.enableMarkdownlint;
+  } else {
+    config.enableMarkdownlint = await chooseEnableMarkdownLint();
+  }
 
   // 初始化 `enablePrettier`
   if (typeof options.enablePrettier === 'boolean') {
