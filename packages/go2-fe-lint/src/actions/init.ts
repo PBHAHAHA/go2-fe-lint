@@ -1,7 +1,6 @@
 import path from 'path';
 import fs from 'fs-extra';
 import inquirer from 'inquirer';
-// import logSymbols from 'log-symbols';
 import spawn from 'cross-spawn';
 import update from './update';
 import npmType from '../utils/npm-type';

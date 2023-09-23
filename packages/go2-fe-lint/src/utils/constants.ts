@@ -3,7 +3,6 @@
  */
 import path from 'path';
 import fs from 'fs-extra';
-// import logSymbols from 'log-symbols';
 
 // 读取 package.json
 const pkg: Record<string, any> = JSON.parse(
