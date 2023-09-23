@@ -128,7 +128,7 @@ export default async (options: InitOptions) => {
       log.info(`---${++step}. 安装依赖`);
       const npm = await npmType;
       spawn.sync(npm, ['i', '-D', PKG_NAME], { stdio: 'inherit', cwd });
-      log.success(`---${step}. 安装依赖成功 ${'✔'}`);
+      log.success(`---${step}. 安装依赖成功  ${'✔'}`);
     }
   }
 
