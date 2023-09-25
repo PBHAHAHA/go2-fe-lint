@@ -109,7 +109,8 @@ export default async (options: InitOptions) => {
   if (typeof options.enableMarkdownlint === 'boolean') {
     config.enableMarkdownlint = options.enableMarkdownlint;
   } else {
-    config.enableMarkdownlint = await chooseEnableMarkdownLint();
+    // config.enableMarkdownlint = await chooseEnableMarkdownLint();
+    config.enableMarkdownlint = false
   }
 
   // 初始化 `enablePrettier`
@@ -146,13 +147,13 @@ export default async (options: InitOptions) => {
   }
 
   // 配置 commit 卡点
-  log.info(`♝ ${++step}. 配置 git commit 检查点`);
-  if (!pkg.husky) pkg.husky = {};
-  if (!pkg.husky.hooks) pkg.husky.hooks = {};
-  pkg.husky.hooks['pre-commit'] = `${PKG_NAME} commit-file-scan`;
-  pkg.husky.hooks['commit-msg'] = `${PKG_NAME} commit-msg-scan`;
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
-  log.success(`---${step}. 配置 git commit 检查点成功 ${'✔'}`);
+  // log.info(`---${++step}. 配置 git commit 检查点`);
+  // if (!pkg.husky) pkg.husky = {};
+  // if (!pkg.husky.hooks) pkg.husky.hooks = {};
+  // pkg.husky.hooks['pre-commit'] = `${PKG_NAME} commit-file-scan`;
+  // pkg.husky.hooks['commit-msg'] = `${PKG_NAME} commit-msg-scan`;
+  // fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+  // log.success(`---${step}. 配置 git commit 检查点成功 ${'✔'}`);
 
   log.info(`---${++step}. 写入配置文件`);
   generateTemplate(cwd, config);
