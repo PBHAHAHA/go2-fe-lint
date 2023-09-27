@@ -26,8 +26,6 @@ export default defineConfig4CustomTheme({
         text: '工程规范',
         items: [
           { text: 'Git 规范', link: '/engineering/git.md' },
-          { text: '文档规范', link: '/engineering/doc.md' },
-          { text: 'CHANGELOG 规范', link: '/engineering/changelog.md' },
         ],
       },
       {
@@ -36,8 +34,6 @@ export default defineConfig4CustomTheme({
           { text: 'go2-fe-eslint-config', link: '/npm/eslint.md' },
           { text: 'go2-fe-stylelint-config', link: '/npm/stylelint.md' },
           { text: 'go2-fe-commitlint-config', link: '/npm/commitlint.md' },
-          { text: 'go2-fe-markdownlint-config', link: '/npm/markdownlint.md' },
-          { text: 'go2-fe-eslint-plugin', link: '/npm/eslint-plugin.md' },
         ],
       },
       {
@@ -74,14 +70,6 @@ export default defineConfig4CustomTheme({
             title: 'Git 规范',
             path: '/engineering/git.md',
           },
-          {
-            title: '文档规范',
-            path: '/engineering/doc.md',
-          },
-          {
-            title: 'CHANGELOG 规范',
-            path: '/engineering/changelog.md',
-          },
         ],
       },
       {
@@ -90,8 +78,6 @@ export default defineConfig4CustomTheme({
           { title: 'go2-fe-eslint-config', path: '/npm/eslint.md' },
           { title: 'go2-fe-stylelint-config', path: '/npm/stylelint.md' },
           { title: 'go2-fe-commitlint-config', path: '/npm/commitlint.md' },
-          { title: 'go2-fe-markdownlint-config', path: '/npm/markdownlint.md' },
-          { title: 'go2-fe-eslint-plugin', path: '/npm/eslint-plugin.md' },
         ],
       },
       {
