@@ -28,6 +28,26 @@ const chooseEslintType = async (): Promise<string> => {
 };
 
 /**
+ * 选择vue的版本
+ */
+
+const chooseVersion = async (): Promise<string> => {
+  const {version} = await inquirer.prompt({
+    type: 'list',
+    name: 'version',
+    message: `---${++step}. 请选择版本：`,
+    choices: [{
+      name: 'vue2',
+      value: '2',
+    },{
+      name: 'vue3',
+      value: '3',
+    },]
+  })
+  return version
+}
+
+/**
  * 选择是否启用 stylelint
  * @param defaultValue
  */
@@ -96,6 +116,12 @@ export default async (options: InitOptions) => {
     config.eslintType = options.eslintType;
   } else {
     config.eslintType = await chooseEslintType();
+  }
+
+  if(options.version){
+    config.version = options.version
+  }else{
+    config.version = await chooseVersion()
   }
 
   // 初始化 `enableStylelint`

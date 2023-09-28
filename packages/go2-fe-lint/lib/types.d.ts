@@ -60,6 +60,7 @@ export interface InitOptions {
     enableMarkdownlint?: boolean;
     enablePrettier?: boolean;
     disableNpmInstall?: boolean;
+    version?: string;
 }
 export interface IGetLintConfig {
     (options: ScanOptions, pkg: PKG, config: Config): ESLint.Options;

@@ -66,6 +66,28 @@ var chooseEslintType = function () { return __awaiter(void 0, void 0, void 0, fu
         }
     });
 }); };
+var chooseVersion = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var version;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4, inquirer_1.default.prompt({
+                    type: 'list',
+                    name: 'version',
+                    message: "---".concat(++step, ". \u8BF7\u9009\u62E9\u7248\u672C\uFF1A"),
+                    choices: [{
+                            name: 'vue2',
+                            value: '2',
+                        }, {
+                            name: 'vue3',
+                            value: '3',
+                        },]
+                })];
+            case 1:
+                version = (_a.sent()).version;
+                return [2, version];
+        }
+    });
+}); };
 var chooseEnableStylelint = function (defaultValue) { return __awaiter(void 0, void 0, void 0, function () {
     var enable;
     return __generator(this, function (_a) {
@@ -115,9 +137,9 @@ var chooseEnablePrettier = function () { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.default = (function (options) { return __awaiter(void 0, void 0, void 0, function () {
-    var cwd, isTest, checkVersionUpdate, disableNpmInstall, config, pkgPath, pkg, _a, _b, _c, npm, logs;
-    return __generator(this, function (_d) {
-        switch (_d.label) {
+    var cwd, isTest, checkVersionUpdate, disableNpmInstall, config, pkgPath, pkg, _a, _b, _c, _d, npm, logs;
+    return __generator(this, function (_e) {
+        switch (_e.label) {
             case 0:
                 cwd = options.cwd || process.cwd();
                 isTest = process.env.NODE_ENV === 'test';
@@ -129,8 +151,8 @@ exports.default = (function (options) { return __awaiter(void 0, void 0, void 0,
                 if (!(!isTest && checkVersionUpdate)) return [3, 2];
                 return [4, (0, update_1.default)(false)];
             case 1:
-                _d.sent();
-                _d.label = 2;
+                _e.sent();
+                _e.label = 2;
             case 2:
                 if (typeof options.enableESLint === 'boolean') {
                     config.enableESLint = options.enableESLint;
@@ -145,50 +167,60 @@ exports.default = (function (options) { return __awaiter(void 0, void 0, void 0,
                 _a = config;
                 return [4, chooseEslintType()];
             case 4:
-                _a.eslintType = _d.sent();
-                _d.label = 5;
+                _a.eslintType = _e.sent();
+                _e.label = 5;
             case 5:
-                if (!(typeof options.enableStylelint === 'boolean')) return [3, 6];
-                config.enableStylelint = options.enableStylelint;
+                if (!options.version) return [3, 6];
+                config.version = options.version;
                 return [3, 8];
             case 6:
                 _b = config;
-                return [4, chooseEnableStylelint(!/node/.test(config.eslintType))];
+                return [4, chooseVersion()];
             case 7:
-                _b.enableStylelint = _d.sent();
-                _d.label = 8;
+                _b.version = _e.sent();
+                _e.label = 8;
             case 8:
+                if (!(typeof options.enableStylelint === 'boolean')) return [3, 9];
+                config.enableStylelint = options.enableStylelint;
+                return [3, 11];
+            case 9:
+                _c = config;
+                return [4, chooseEnableStylelint(!/node/.test(config.eslintType))];
+            case 10:
+                _c.enableStylelint = _e.sent();
+                _e.label = 11;
+            case 11:
                 if (typeof options.enableMarkdownlint === 'boolean') {
                     config.enableMarkdownlint = options.enableMarkdownlint;
                 }
                 else {
                     config.enableMarkdownlint = false;
                 }
-                if (!(typeof options.enablePrettier === 'boolean')) return [3, 9];
+                if (!(typeof options.enablePrettier === 'boolean')) return [3, 12];
                 config.enablePrettier = options.enablePrettier;
-                return [3, 11];
-            case 9:
-                _c = config;
+                return [3, 14];
+            case 12:
+                _d = config;
                 return [4, chooseEnablePrettier()];
-            case 10:
-                _c.enablePrettier = _d.sent();
-                _d.label = 11;
-            case 11:
-                if (!!isTest) return [3, 14];
+            case 13:
+                _d.enablePrettier = _e.sent();
+                _e.label = 14;
+            case 14:
+                if (!!isTest) return [3, 17];
                 log_1.default.info("---".concat(++step, ". \u68C0\u67E5\u5E76\u5904\u7406\u9879\u76EE\u4E2D\u53EF\u80FD\u5B58\u5728\u7684\u4F9D\u8D56\u548C\u914D\u7F6E\u51B2\u7A81"));
                 return [4, (0, conflict_resolve_1.default)(cwd, options.rewriteConfig)];
-            case 12:
-                pkg = _d.sent();
+            case 15:
+                pkg = _e.sent();
                 log_1.default.success("---".concat(step, ". \u5DF2\u5B8C\u6210\u9879\u76EE\u4F9D\u8D56\u548C\u914D\u7F6E\u51B2\u7A81\u68C0\u67E5\u5904\u7406 \u2714"));
-                if (!!disableNpmInstall) return [3, 14];
+                if (!!disableNpmInstall) return [3, 17];
                 log_1.default.info("---".concat(++step, ". \u5B89\u88C5\u4F9D\u8D56"));
                 return [4, npm_type_1.default];
-            case 13:
-                npm = _d.sent();
+            case 16:
+                npm = _e.sent();
                 cross_spawn_1.default.sync(npm, ['i', '-D', constants_1.PKG_NAME], { stdio: 'inherit', cwd: cwd });
                 log_1.default.success("---".concat(step, ". \u5B89\u88C5\u4F9D\u8D56\u6210\u529F  ").concat('✔'));
-                _d.label = 14;
-            case 14:
+                _e.label = 17;
+            case 17:
                 pkg = fs_extra_1.default.readJSONSync(pkgPath);
                 if (!pkg.scripts) {
                     pkg.scripts = {};

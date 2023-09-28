@@ -90,6 +90,8 @@ export interface InitOptions {
   enablePrettier?: boolean;
   // 是否禁用自动在初始化完成后安装依赖
   disableNpmInstall?: boolean;
+  // 选择框架后的version
+  version?: string;
 }
 
 export interface IGetLintConfig {
