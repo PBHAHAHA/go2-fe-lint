@@ -94,10 +94,10 @@ const init = (options) => __awaiter(void 0, void 0, void 0, function* () {
             const npm = yield npm_type_1.default;
             cross_spawn_1.default.sync(npm, ['i', '-D', constants_1.PKG_NAME], { stdio: 'inherit', cwd });
             if (config.enableStylelint) {
-                cross_spawn_1.default.sync(npm, ['i', '-D', 'stylelint', 'stylelint-scss', 'stylelint-config-pub', 'postcss-html', 'postcss-scss', 'postcss-less'], { stdio: 'inherit', cwd });
+                cross_spawn_1.default.sync(npm, ['i', '-D', 'stylelint', 'stylelint-scss', 'stylelint-config-go2', 'postcss-html', 'postcss-scss', 'postcss-less'], { stdio: 'inherit', cwd });
             }
             if (config.enableESLint) {
-                cross_spawn_1.default.sync(npm, ['i', '-D', 'eslint', 'eslint-config-pub', "eslint-plugin-import", "@babel/core", "@babel/eslint-parser", "vue-eslint-parser", "eslint-plugin-vue"], { stdio: 'inherit', cwd });
+                cross_spawn_1.default.sync(npm, ['i', '-D', 'eslint', 'eslint-config-go2', "eslint-plugin-import", "@babel/core", "@babel/eslint-parser", "vue-eslint-parser", "eslint-plugin-vue"], { stdio: 'inherit', cwd });
             }
             if (config.enablePrettier) {
                 cross_spawn_1.default.sync(npm, ['i', '-D', 'prettier', 'eslint-config-prettier'], { stdio: 'inherit', cwd });
