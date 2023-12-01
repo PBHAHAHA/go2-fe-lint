@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-go2",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "JS编码规范",
   "main": "index.js",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "go2-fe-lint",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "copyfiles": "copyfiles -a -u 1 \"src/config/**\" lib"
   },
   "bin": {
-    "pubb": "./lib/cli.js"
+    "go2": "./lib/cli.js"
   },
   "keywords": [],
   "author": "",
