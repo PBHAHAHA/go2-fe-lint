@@ -6,27 +6,27 @@ tags:
   - 工程规范
 ---
 
-# go2-fe-eslint-config
+# eslint-config-go2
 
 :::tip
  JavaScript 规范配置包
 :::
 
-## JavaScript 项目 go2-fe-eslint-config
+## JavaScript 项目 eslint-config-go2
 
 针对未使用 `React` 或 `Vue` 的原生 `JavaScript` 项目，使用 `ESLint` 原生规则和 [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) 规则，使用 [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser) 作为 `parser`。
 
 ### 安装
 
 ```shell
-npm i -D go2-fe-eslint-config @babel/core @babel/eslint-parser eslint-plugin-import
+npm i -D eslint-config-go2 @babel/core @babel/eslint-parser eslint-plugin-import
 ```
 
 ### 配置
 
 ```json
 {
-  "extends": ["go2-fe-eslint-config"]
+  "extends": ["eslint-config-go2"]
 }
 ```
 
@@ -37,13 +37,13 @@ npm i -D go2-fe-eslint-config @babel/core @babel/eslint-parser eslint-plugin-imp
 ### 安装
 
 ```shell
-npm i -D go2-fe-eslint-config @babel/core @babel/eslint-parser eslint-plugin-import vue-eslint-parser eslint-plugin-vue
+npm i -D eslint-config-go2 @babel/core @babel/eslint-parser eslint-plugin-import vue-eslint-parser eslint-plugin-vue
 ```
 
 ### 配置
 
 ```json
 {
-  "extends": ["go2-fe-eslint-config/vue"]
+  "extends": ["eslint-config-go2/vue"]
 }
 ```

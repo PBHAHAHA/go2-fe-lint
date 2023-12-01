@@ -22,19 +22,19 @@ author:
 
 ### 1.1. 缩进
 
-- 1.1.1.【强制】使用 2 个空格缩进。`eslint`: [indent](https://eslint.org/docs/rules/indent)
+- 1.1.1.【强制】使用 4 个空格缩进。`eslint`: [indent](https://eslint.org/docs/rules/indent)
 
-  统一使用 2 个空格缩进，不要使用 4 个空格或 tab 缩进：
+  统一使用 4 个空格缩进，不要使用 2 个空格或 tab 缩进：
 
   ```javascript
   // bad
   function foo() {
-  ∙∙∙∙let name;
+  ∙∙let name;
   }
 
   // good
   function foo() {
-  ∙∙let name;
+  ∙∙∙∙let name;
   }
   ```
 
@@ -110,19 +110,19 @@ author:
   这样可以使增删行更加容易，也会使 `git diffs` 更清晰。`Babel` 等编译器会在编译后的代码里帮我们去掉最后额外的逗号，因此不必担心在旧浏览器中的问题。
 
   ```diff
-  // bad - 没有结尾逗号时，新增一行的 git diff 示例
+  // bad 
   const hero = {
        firstName: 'Florence',
   -    lastName: 'Nightingale'
   +    lastName: 'Nightingale',
-  +    inventorOf: ['coxcomb chart', 'modern nursing']
+  +    inventorOf: ['coxcomb chart', 'modern nursing'],
   };
 
-  // good - 有结尾逗号时，新增一行的 git diff 示例
+  // good
   const hero = {
        firstName: 'Florence',
        lastName: 'Nightingale',
-  +    inventorOf: ['coxcomb chart', 'modern nursing'],
+  +    inventorOf: ['coxcomb chart', 'modern nursing']
   };
   ```
 
@@ -144,7 +144,7 @@ author:
   // good
   const hero = {
     firstName: 'Dana',
-    lastName: 'Scully',
+    lastName: 'Scully'
   };
 
   const heroes = ['Batman', 'Superman'];
@@ -163,39 +163,19 @@ author:
 
 ### 1.4. 块
 
-> 术语解释：**块（block）** 可以理解为类、函数、控制语句等由大括号 `{}` 分隔的代码块状结构，由一对大括号界定，用于组合若干条语句 [了解更多](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block)
+- 1.4.1【强制】始终使用大括号包裹代码块。eslint: [curly](https://eslint.org/docs/rules/curly) [nonblock-statement-body-position](https://eslint.org/docs/rules/nonblock-statement-body-position)
 
-- 1.4.1【推荐】始终使用大括号包裹代码块。eslint: [curly](https://eslint.org/docs/rules/curly) [nonblock-statement-body-position](https://eslint.org/docs/rules/nonblock-statement-body-position)
-
-  多行代码块必须用大括号包裹：
+  代码块必须用大括号包裹：
 
   ```javascript
   // bad
   if (foo) bar();
-  baz(); // 这一行并不在 if 语句里
 
   // good
   if (foo) {
     bar();
-    baz();
   }
   ```
-
-  代码块只有一条语句时，可以省略大括号，并跟控制语句写在同一行。但出于一致性和可读性考虑，不推荐这样做：
-
-  ```javascript
-  // bad
-  if (foo) return false;
-
-  // bad - 允许但不推荐
-  if (foo) return false;
-
-  // good
-  if (foo) {
-    return false;
-  }
-  ```
-
 #### 1.4.2. 大括号换行风格
 
 - 1.4.2.1.【强制】对于非空代码块，采用 `Egyptian Brackets` 风格。eslint: [brace-style](https://eslint.org/docs/rules/brace-style)

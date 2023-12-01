@@ -31,9 +31,9 @@ export default defineConfig4CustomTheme({
       {
         text: 'NPM包',
         items: [
-          { text: 'go2-fe-eslint-config', link: '/npm/eslint.md' },
-          { text: 'go2-fe-stylelint-config', link: '/npm/stylelint.md' },
-          { text: 'go2-fe-commitlint-config', link: '/npm/commitlint.md' },
+          { text: 'eslint-config-go2', link: '/npm/eslint.md' },
+          { text: 'stylelint-config-go2', link: '/npm/stylelint.md' },
+          { text: 'commitlint-config-go2', link: '/npm/commitlint.md' },
         ],
       },
       {
@@ -75,14 +75,14 @@ export default defineConfig4CustomTheme({
       {
         title: 'NPM包',
         children: [
-          { title: 'go2-fe-eslint-config', path: '/npm/eslint.md' },
-          { title: 'go2-fe-stylelint-config', path: '/npm/stylelint.md' },
-          { title: 'go2-fe-commitlint-config', path: '/npm/commitlint.md' },
+          { title: 'eslint-config-go2', path: '/npm/eslint.md' },
+          { title: 'stylelint-config-go2', path: '/npm/stylelint.md' },
+          { title: 'commitlint-config-go2', path: '/npm/commitlint.md' },
         ],
       },
       {
         title: '脚手架',
-        children: [{ title: 'go2-fe-spec', path: '/cli/go2-fe-spec.md' }],
+        children: [{ title: 'go2-fe-lint', path: '/cli/go2-fe-spec.md' }],
       },
     ],
     repo: 'pbhahaha/go2-fe-spec',

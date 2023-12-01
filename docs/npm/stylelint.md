@@ -1,5 +1,5 @@
 ---
-title: go2-fe-stylelint-config
+title: stylelint-config
 categories:
   - 工程规范
 tags:
@@ -19,7 +19,17 @@ tags:
 需要先行安装 [stylelint](https://www.npmjs.com/package/stylelint) 和 [stylelint-scss](https://www.npmjs.com/package/stylelint-scss)：
 
 ```bash
-npm install go2-fe-stylelint-config stylelint stylelint-scss --save-dev
+npm install stylelint-config-go2 stylelint stylelint-scss --save-dev
+
+# 如果是vue + css 项目需要引入 postcss-html 
+npm install postcss-html --save-dev
+
+# 如果是 vue + scss项目需要引入 postcss-scss
+npm install postcss-scss --save-dev
+
+# 如果是 vue + less项目需要引入 postcss-less
+npm install postcss-less --save-dev
+
 ```
 
 ## 使用
@@ -28,6 +38,6 @@ npm install go2-fe-stylelint-config stylelint stylelint-scss --save-dev
 
 ```json
 {
-  "extends": "go2-fe-stylelint-config"
+  "extends": "stylelint-config-go2"
 }
 ```

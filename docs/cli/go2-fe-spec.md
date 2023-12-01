@@ -26,8 +26,34 @@ npm i -g go2-fe-lint
 go2 -h
 ```
 
-init 初始化项目
+init 初始化项目 lint 相关配置
 ```shell
 go2 init
 ```
 
+
+:::warning 注意
+vue项目中如果使用了 `unplugin-auto-import` 这个自动引入的包,则会有变量未定义的eslint冲突
+:::
+
+解决方法：
+
+1. 打开 `vue.config.js` 文件，在 `configureWebpack` 中添加如下配置
+```js
+AutoImport({
+  imports: ['vue'],
+  extensions: ['vue', 'md'],
+  include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+  resolvers: [ArcoResolver()],
+  // ---需要将eslintrc的enabled设置为true---
+  eslintrc: {
+    enabled: true,
+  },
+}),
+
+``` 
+2. 运行的时候会自动生成一个 `.eslintrc-auto-import.json`文件
+3. 修改 `.eslintrc.json` 中的配置,添加到extends中
+```JSON
+  "extends": [ ... ,"./.eslintrc-auto-import.json" ]
+```

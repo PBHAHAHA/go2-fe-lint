@@ -32,8 +32,8 @@ module.exports = {
     // 要求 return 语句要么总是指定返回的值，要么不指定
     'consistent-return': 'off',
 
-    // 多行语句必须用大括号包裹，单行语句推荐用大括号包裹
-    curly: ['error', 'multi-line'],
+    // 关键字后必须有大括号（即使代码块的内容只有一行）
+    curly: ['error', 'all'],
 
     // switch 语句需要始终包含 default 分支
     'default-case': ['warn', { commentPattern: '^no default$' }],

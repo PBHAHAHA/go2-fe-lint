@@ -16,13 +16,13 @@ module.exports = {
     'brace-style': ['error', '1tbs', { allowSingleLine: true }],
 
     // 使用小驼峰命名风格
-    camelcase: 'off',
+    camelcase: '',
 
     // 强制或禁止对注释的第一个字母大写
     'capitalized-comments': 'off',
 
     // 用逗号分隔的多行结构，始终加上最后一个逗号（单行不用）
-    'comma-dangle': ['error', 'always-multiline'],
+    'comma-dangle': ['error', 'never'],
 
     // 逗号的前面无空格，后面有空格
     'comma-spacing': ['error', { before: false, after: true }],
@@ -73,11 +73,11 @@ module.exports = {
     // @reason 同 prettier 有冲突
     'implicit-arrow-linebreak': ['off', 'beside'],
 
-    // 使用 2 个空格缩进
+    // 使用 4 个空格缩进
     // @unessential
     indent: [
       'error',
-      2,
+      4,
       {
         SwitchCase: 1,
         VariableDeclarator: 1,
