@@ -105,11 +105,11 @@ const init  = async (options: InitOptions) => {
       spawn.sync(npm, ['i', '-D', PKG_NAME], { stdio: 'inherit', cwd });
       // 安装stylelint的依赖
       if (config.enableStylelint) {
-        spawn.sync(npm, ['i', '-D', 'stylelint','stylelint-scss','stylelint-config-pub', 'postcss-html', 'postcss-scss', 'postcss-less'], { stdio: 'inherit', cwd });
+        spawn.sync(npm, ['i', '-D', 'stylelint','stylelint-scss','stylelint-config-go2', 'postcss-html', 'postcss-scss', 'postcss-less'], { stdio: 'inherit', cwd });
       }
       // 安装eslint依赖
       if (config.enableESLint) {
-        spawn.sync(npm, ['i', '-D', 'eslint','eslint-config-pub',"eslint-plugin-import","@babel/core","@babel/eslint-parser","vue-eslint-parser","eslint-plugin-vue"], { stdio: 'inherit', cwd });
+        spawn.sync(npm, ['i', '-D', 'eslint','eslint-config-go2',"eslint-plugin-import","@babel/core","@babel/eslint-parser","vue-eslint-parser","eslint-plugin-vue"], { stdio: 'inherit', cwd });
       }
       // 安装priettier依赖
       if (config.enablePrettier) {
