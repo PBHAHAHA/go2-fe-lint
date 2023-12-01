@@ -25,14 +25,13 @@ features:
 
 | 规范                                                              | Lint 工具                                                      | NPM 包                                                                                       |
 | ----------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| JavaScript 编码规范 <br/> TypeScript 编码规范 <br/> Node 编码规范 | [ESLint](https://eslint.org/)                                  | [go2-fe-eslint-config](https://www.npmjs.com/package/eslint-config-pub)             |
-| CSS 编码规范                                                      | [stylelint](https://stylelint.io/)                             | [go2-fe-stylelint-config](https://www.npmjs.com/package/stylelint-config-pub)       |
-| Git 规范                                                          | [commitlint](https://commitlint.js.org/#/)                     | [go2-fe-commitlint-config](https://www.npmjs.com/package/commitlint-config-pub)     |
-| Eslint 插件                                                       | [ESlint Plugin](https://eslint.org/docs/latest/extend/plugins) | [go2-fe-eslint-plugin](https://www.npmjs.com/package/eslint-plugin-pub)             |
+| JavaScript 编码规范 <br/> TypeScript 编码规范 <br/> Node 编码规范 | [ESLint](https://eslint.org/)                                  | [eslint-config-go2](https://www.npmjs.com/package/eslint-config-go2)             |
+| CSS 编码规范                                                      | [stylelint](https://stylelint.io/)                             | [stylelint-config-go2](https://www.npmjs.com/package/stylelint-config-go2)       |
+| Git 规范                                                          | [commitlint](https://commitlint.js.org/#/)                     | [commitlint-config-go2](https://www.npmjs.com/package/commitlint-config-go2)     |
 
-[go2-fe-lint](https://www.npmjs.com/package/pub-fe-lint) 
+[go2-fe-lint](https://www.npmjs.com/package/go2-fe-lint) 
 
-您可以使用[go2-fe-lint](https://www.npmjs.com/package/pub-fe-lint) 方便地为项目接入全部规范。
+您可以使用[go2-fe-lint](https://www.npmjs.com/package/go2-fe-lint) 方便地为项目接入全部规范。
 
 </br>
 

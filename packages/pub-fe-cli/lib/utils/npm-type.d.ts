@@ -1,2 +1,2 @@
-declare const promise: Promise<'npm' | 'pnpm'>;
+declare const promise: Promise<'npm' | 'yarn' | 'pnpm'>;
 export default promise;
