@@ -1,21 +1,32 @@
-# go2-fe-markdownlint-config
+## stylelint-config-pub
 
-支持配套的 [stylelint 可共享配置](https://stylelint.io/user-guide/configure)。
+### 使用指南
 
-## 安装
-
-需要先行安装 [stylelint](https://www.npmjs.com/package/stylelint) 和 [stylelint-scss](https://www.npmjs.com/package/stylelint-scss)：
+1. 安装依赖
 
 ```bash
-npm install go2-fe-stylelint-config stylelint stylelint-scss --save-dev
+npm i -D stylelint stylelint-css stylelint-config-pub postcss-html postcss-less postcss-scss -D
 ```
 
-## 使用
+2. 创建配置文件 .stylelintrc.js
 
-在 `.stylelintrc` 中继承本包:
 
-```json
+3. 编辑配置文件
+
+```js
+module.exports = {
+  extends: ['stylelint-config-pub'],
+  rules: {
+    // 自定义规则
+  },
+};
+```
+4. 在vscode中编辑时能提示
+
+settings.json
+```JSON
 {
-  "extends": "go2-fe-stylelint-config"
+  ...
+  "stylelint.validate": ["css", "scss", "less", "sass","vue"],
 }
 ```

@@ -1,4 +1,3 @@
-
 /**
  * 本文件的规则由 eslint-plugin-vue 提供，使用 vue-eslint-parser 作为 parser
  * @link https://eslint.vuejs.org/rules/

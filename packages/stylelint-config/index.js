@@ -1,8 +1,22 @@
 module.exports = {
-    defaultSeverity: 'error', // 优先级的程度
+    defaultSeverity: "warning",
     plugins: ['stylelint-scss'],
+    overrides: [
+        {
+            files: ['**/*.{html,vue}'],
+            customSyntax: 'postcss-html'
+        },
+        {
+            files: ['**/*.scss'],
+            customSyntax: 'postcss-scss'
+        },
+        {
+            files: ['**/*.less'],
+            customSyntax: 'postcss-less'
+        }
+    ],
     rules: {
-      /**
+        /**
        * stylelint 的规则配置项
        * @link https://stylelint.io/user-guide/rules/#possible-errors
        */
@@ -84,4 +98,4 @@ module.exports = {
       'scss/double-slash-comment-whitespace-inside': 'always', //注释后面要有一个空格
     },
     ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'], //忽略文件
-  };
+}

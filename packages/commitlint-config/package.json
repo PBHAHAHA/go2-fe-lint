@@ -1,22 +1,20 @@
 {
-  "name": "go2-fe-commitlint-config",
-  "version": "0.0.35",
+  "name": "commitlint-config-go2",
+  "version": "1.0.1",
+  "description": "Git提交规范",
   "main": "index.js",
-  "description": "购商云汇 Git规范",
-  "keywords": [
-    "go2",
-    "commit",
-    "lint"
-  ],
-  "author": "pub",
   "homepage": "https://github.com/PBHAHAHA/go2-fe-spec#readme",
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PBHAHAHA/go2-fe-spec.git"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "pub",
+  "license": "MIT",
   "dependencies": {
     "conventional-changelog-conventionalcommits": "^4.5.0"
-  },
-  "gitHead": "80e9b45493290cc78fa9a15f369445f944997ebc"
+  }
 }

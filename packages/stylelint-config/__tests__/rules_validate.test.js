@@ -1,85 +1,68 @@
-const assert = require('assert');
-const stylelint = require('stylelint');
-const path = require('path');
+const assert = require('assert')
+const stylelint = require('stylelint')
+const path = require("path")
 
 describe('test rules.test.js', () => {
-  it('Validate default', async () => {
-    const filePaths = [path.join(__dirname, './fixtures/index.css')];
+    it('validate default', async () => {
+        const filePaths = [path.join(__dirname, './fixtures/index.css')]
+        const result = await stylelint.lint({
+            configFile: path.join(__dirname, '../index.js'),
+            files: filePaths,
+            fix: true
+        })
+        // console.log(result.errored)
+        if(result?.errored){
+            const filesResult = JSON.parse(result.output || '[]') || []
+            filesResult.forEach(result => {
+                console.log(`❌css测试未通过`,result.warnings)
+            });
+            assert.fail()
+        }
+    })
 
-    const result = await stylelint.lint({
-      configFile: path.join(__dirname, '../index.js'),
-      files: filePaths,
-      fix: true, //一键修复
-    });
-    // console.log(result.errored)
-    if (result && result.errored) {
-      const filesResult = JSON.parse(result.output || '[]') || [];
-      filesResult.forEach((fileResult) => {
-        // console.log(`========= ${fileResult} ==========`,fileResult);
-        // console.log(fileResult.warnings);
-      });
-
-      assert.ok(filesResult.length !== 0);
-    }
-  });
-
-  it('Validate sass', async () => {
-    const filePaths = [path.join(__dirname, './fixtures/sass-test.scss')];
-
-    const result = await stylelint.lint({
-      configFile: path.join(__dirname, '../index.js'),
-      files: filePaths,
-      fix: false,
-    });
-
-    if (result && result.errored) {
-      const filesResult = JSON.parse(result.output || '[]') || [];
-      filesResult.forEach((fileResult) => {
-        // console.log(`========= ${filePaths} ==========`);
-        // console.log(fileResult.warnings);
-      });
-
-      assert.ok(filesResult.length !== 0);
-    }
-  });
-
-  it('Validate less', async () => {
-    const filePaths = [path.join(__dirname, './fixtures/less-test.less')];
-
-    const result = await stylelint.lint({
-      configFile: path.join(__dirname, '../index.js'),
-      files: filePaths,
-      fix: false,
-    });
-
-    if (result && result.errored) {
-      const filesResult = JSON.parse(result.output || '[]') || [];
-      filesResult.forEach((fileResult) => {
-        console.log(`========= ${filePaths} ==========`);
-        console.log(fileResult.warnings);
-      });
-
-      assert.ok(filesResult.length !== 0);
-    }
-  });
-
-  it('Validate css-module', async () => {
-    const filePaths = [path.join(__dirname, './fixtures/css-module.scss')];
-
-    const result = await stylelint.lint({
-      configFile: path.join(__dirname, '../index.js'),
-      files: filePaths,
-      fix: false,
-    });
-
-    if (result && result.errored) {
-      const filesResult = JSON.parse(result.output || '[]') || [];
-      filesResult.forEach((fileResult) => {
-        console.log(`========= ${filePaths} ==========`);
-        console.log(fileResult.warnings);
-      });
-
-      assert.ok(filesResult.length === 0);
-    }
-  });
-});
+    it('validate scss', async ()  => {
+        const filePaths = [path.join(__dirname, './fixtures/index.scss')]
+        const result = await stylelint.lint({
+            configFile: path.join(__dirname, '../index.js'),
+            files: filePaths,
+            fix: true,
+        })
+        if(result?.errored){
+            const filesResult = JSON.parse(result.output || '[]') || []
+            filesResult.forEach(result => {
+                console.log(`❌scss测试未通过`,result)
+            });
+            assert.fail()
+        }
+    })
+    it('validate less', async ()  => {
+        const filePaths = [path.join(__dirname, './fixtures/index.less')]
+        const result = await stylelint.lint({
+            configFile: path.join(__dirname, '../index.js'),
+            files: filePaths,
+            fix: true,
+        })
+        if(result?.errored){
+            const filesResult = JSON.parse(result.output || '[]') || []
+            filesResult.forEach(result => {
+                console.log(`❌less测试未通过`,result.warnings)
+            });
+            assert.fail()
+        }
+    })
+    it('validate vue', async ()  => {
+        const filePaths = [path.join(__dirname, './fixtures/index.vue')]
+        const result = await stylelint.lint({
+            configFile: path.join(__dirname, '../index.js'),
+            files: filePaths,
+            fix: true,
+        })
+        if(result?.errored){
+            const filesResult = JSON.parse(result.output || '[]') || []
+            filesResult.forEach(result => {
+                console.log(`❌vue测试未通过`,result.warnings)
+            });
+            assert.fail()
+        }
+    })
+})
