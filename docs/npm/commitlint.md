@@ -32,3 +32,7 @@ module.exports = {
 
 ## 配合husky使用
 
+```bash
+npm install husky --save-dev
+npx husky add .husky/commit-msg 'npx commitlint --edit $1'
+```
