@@ -70,6 +70,10 @@ export default defineConfig4CustomTheme({
             title: 'Git 规范',
             path: '/engineering/git.md',
           },
+          {
+            title: '命名规范',
+            path: '/engineering/name.md',
+          },
         ],
       },
       {

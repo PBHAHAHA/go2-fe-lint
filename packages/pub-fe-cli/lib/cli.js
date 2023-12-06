@@ -35,4 +35,9 @@ commander_1.program
         });
     }
 }));
+commander_1.program
+    .command('create')
+    .description('创建模板项目')
+    .action(() => {
+});
 commander_1.program.parse(process.argv);

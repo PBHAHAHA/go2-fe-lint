@@ -28,6 +28,13 @@ program
     }
   });
 
+program
+ .command('create')
+ .description('创建模板项目')
+ .action(() => {
+    
+  });
+
   // program
   // .command('update')
   // .description(`更新 ${PKG_NAME} 至最新版本`)

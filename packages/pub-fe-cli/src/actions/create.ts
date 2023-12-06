@@ -1,5 +1,5 @@
-const create = async (options: InitOptions) => {
-
+const create = async (options) => {
+  
 }
 
 export default create
