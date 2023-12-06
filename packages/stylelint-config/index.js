@@ -63,7 +63,7 @@ module.exports = {
        * Stylistic issues
        * @link https://stylelint.io/user-guide/rules/list#stylistic-issues
        */
-      indentation: 2, //指定缩进
+      indentation: 4, //指定缩进
       'block-closing-brace-newline-before': 'always-multi-line',//在多行块中，在结束大括号之前必须有一个换行符。
       'block-closing-brace-space-before': 'always-single-line',//在单行块中，右括号前必须有一个空格。
       'block-opening-brace-newline-after': 'always-multi-line',//在多行块中，在开始大括号之后必须有一个换行符。
