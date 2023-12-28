@@ -1,5 +1,6 @@
 ---
-title: JavaScript 编码规范
+title: JavaScript 编码规范1
+sidebarDepth: 2
 categories:
   - 编码规范
 tags:
@@ -50,14 +51,14 @@ author:
   // bad - 导致 Uncaught ReferenceError 报错
   const pub = {};
   const pub = {}[(pub, bup)].forEach((jedi) => {
-    jedi.father = 'vader';
+      jedi.father = 'vader';
   });
 
   // good
   const pub = {};
   const bup = {};
   [pub, bup].forEach((jedi) => {
-    jedi.father = 'vader';
+      jedi.father = 'vader';
   });
 
   // bad - 导致 Uncaught ReferenceError 报错
@@ -69,13 +70,13 @@ author:
 
   // bad - 函数将返回 `undefined` 而不是换行后的值
   function foo() {
-    return;
-    ('Result want to be returned');
+      return;
+      ('Result want to be returned');
   }
 
   // good
   function foo() {
-    return 'Result want to be returned';
+      return 'Result want to be returned';
   }
   ```
 
@@ -85,23 +86,31 @@ author:
 
   ```javascript
   // bad
-  const story = [once, upon, aTime];
+  const story = [
+        once
+      , upon
+      , aTime
+  ];
 
   // good
-  const story = [once, upon, aTime];
+  const story = [
+      once,
+      upon,
+      aTime,
+  ];
 
   // bad
   const hero = {
-    firstName: 'Ada',
-    lastName: 'Lovelace',
-    superPower: 'computers',
+        firstName: 'Ada'
+      , lastName: 'Lovelace'
+      , superPower: 'computers'
   };
 
   // good
   const hero = {
-    firstName: 'Ada',
-    lastName: 'Lovelace',
-    superPower: 'computers',
+      firstName: 'Ada',
+      lastName: 'Lovelace',
+      superPower: 'computers',
   };
   ```
 
@@ -109,54 +118,81 @@ author:
 
   这样可以使增删行更加容易，也会使 `git diffs` 更清晰。`Babel` 等编译器会在编译后的代码里帮我们去掉最后额外的逗号，因此不必担心在旧浏览器中的问题。
 
-  ```diff
-  // bad 
-  const hero = {
-       firstName: 'Florence',
-  -    lastName: 'Nightingale'
-  +    lastName: 'Nightingale',
-  +    inventorOf: ['coxcomb chart', 'modern nursing'],
-  };
+  ```javascript
+    // bad 
+    const hero = {
+        firstName: 'Florence',
+        lastName: 'Nightingale'
+        lastName: 'Nightingale',
+        inventorOf: ['coxcomb chart', 'modern nursing']
+    };
 
-  // good
-  const hero = {
-       firstName: 'Florence',
-       lastName: 'Nightingale',
-  +    inventorOf: ['coxcomb chart', 'modern nursing']
-  };
+    // good
+    const hero = {
+        firstName: 'Florence',
+        lastName: 'Nightingale',
+        inventorOf: ['coxcomb chart', 'modern nursing'],
+    };
   ```
 
   ```javascript
-  // bad
+    // bad
   const hero = {
-    firstName: 'Dana',
-    lastName: 'Scully',
+      firstName: 'Dana',
+      lastName: 'Scully'
   };
 
-  const heroes = ['Batman', 'Superman'];
+  const heroes = [
+      'Batman',
+      'Superman'
+  ];
 
-  function createHero(firstName, lastName, inventorOf) {
+  function createHero(
+      firstName,
+      lastName,
+      inventorOf
+  ) {
     // ...
   }
 
-  createHero(firstName, lastName, inventorOf);
+  createHero(
+      firstName,
+      lastName,
+      inventorOf
+  );
 
   // good
   const hero = {
-    firstName: 'Dana',
-    lastName: 'Scully'
+      firstName: 'Dana',
+      lastName: 'Scully',
   };
 
-  const heroes = ['Batman', 'Superman'];
+  const heroes = [
+      'Batman',
+      'Superman',
+  ];
 
-  function createHero(firstName, lastName, inventorOf) {
+  function createHero(
+      firstName,
+      lastName,
+      inventorOf,
+  ) {
     // ...
   }
 
-  createHero(firstName, lastName, inventorOf);
+  createHero(
+      firstName,
+      lastName,
+      inventorOf,
+  );
 
   // good - 需注意，使用扩展运算符的元素后面不能加逗号
-  function createHero(firstName, lastName, inventorOf, ...heroArgs) {
+  function createHero(
+      firstName,
+      lastName,
+      inventorOf,
+      ...heroArgs
+  ) {
     // ...
   }
   ```
@@ -173,7 +209,7 @@ author:
 
   // good
   if (foo) {
-    bar();
+      bar();
   }
   ```
 #### 1.4.2. 大括号换行风格
@@ -191,57 +227,18 @@ author:
   ```javascript
   // bad - else 应与 if 的 } 放在同一行
   if (foo) {
-    thing1();
+      thing1();
   }
   else
-    thing2();
+      thing2();
   }
 
   // good
   if (foo) {
-    thing1();
+      thing1();
   } else {
-    thing2();
+      thing2();
   }
-  ```
-
-- 1.4.2.2.【参考】对于空代码块，可以将大括号直接闭合。
-
-  对于空的代码块，且不在类似 `if..else..` 或 `try..catch..finally..` 的多块结构中时，可以立即将大括号闭合：
-
-  ```javascript
-  // good
-  function doNothing() {}
-  ```
-
-  但如果空代码块在多块结构中，仍建议按上一条非空块的 `Egyptian Brackets` 风格换行：
-
-  ```javascript
-  // bad
-  if (condition) {
-    // …
-  } else if (otherCondition) {
-  } else {
-    // …
-  }
-
-  // good
-  if (condition) {
-    // …
-  } else if (otherCondition) {
-  } else {
-    // …
-  }
-
-  // bad
-  try {
-    // …
-  } catch (e) {}
-
-  // good
-  try {
-    // …
-  } catch (e) {}
   ```
 
 - 1.4.3.【强制】不要使用空代码块。`eslint`: [no-empty](https://eslint.org/docs/rules/no-empty)
@@ -251,15 +248,15 @@ author:
   ```javascript
   // bad
   if (condition) {
-    thing1();
+      thing1();
   } else {
   }
 
   // good
   if (condition) {
-    thing1();
+      thing1();
   } else {
-    // TODO I haven’t determined what to do.
+      // TODO 做某事情
   }
   ```
 
@@ -271,55 +268,41 @@ author:
 
   块的左大括号 `{` 前有一个空格：
 
-  ```javascript
-  // bad
-  function test() {
-    console.log('test');
-  }
-
-  // good
-  function test() {
-    console.log('test');
-  }
-
-  // bad
-  dog.set('attr', {
-    age: '1 year',
-    breed: 'Bernese Mountain Dog',
-  });
-
-  // good
-  dog.set('attr', {
-    age: '1 year',
-    breed: 'Bernese Mountain Dog',
-  });
   ```
-
-  控制语句（`if`、`while` 等）的左小括号 `(` 前有一个空格：
-
-  ```javascript
   // bad
-  if (isJedi) {
-    fight();
+  function test(){
+      console.log('test');
   }
 
   // good
-  if (isJedi) {
-    fight();
+  function test() {
+      console.log('test');
   }
+
+  // bad
+  dog.set('attr',{
+      age: '1 year',
+      breed: 'Bernese Mountain Dog',
+  });
+
+  // good
+  dog.set('attr', {
+      age: '1 year',
+      breed: 'Bernese Mountain Dog',
+  });
   ```
 
   声明函数时，函数名和参数列表之间无空格：
 
   ```javascript
   // bad
-  function fight() {
-    console.log('Swooosh!');
+  function fight () {
+      console.log('xxx!');
   }
 
   // good
   function fight() {
-    console.log('Swooosh!');
+      console.log('xxx!');
   }
   ```
 
@@ -327,23 +310,23 @@ author:
 
   ```javascript
   // bad
-  function bar(foo) {
-    return foo;
+  function bar( foo ) {
+      return foo;
   }
 
   // good
   function bar(foo) {
-    return foo;
+      return foo;
   }
 
   // bad
-  if (foo) {
-    console.log(foo);
+  if ( foo ) {
+      console.log(foo);
   }
 
   // good
   if (foo) {
-    console.log(foo);
+      console.log(foo);
   }
   ```
 
@@ -351,8 +334,8 @@ author:
 
   ```javascript
   // bad
-  const foo = [1, 2, 3];
-  console.log(foo[0]);
+  const foo = [ 1, 2, 3 ];
+  console.log(foo[ 0 ]);
 
   // good
   const foo = [1, 2, 3];
@@ -363,7 +346,7 @@ author:
 
   ```javascript
   // bad
-  const foo = { clark: 'kent' };
+  const foo = {clark: 'kent'};
 
   // good
   const foo = { clark: 'kent' };
@@ -373,19 +356,19 @@ author:
 
   ```javascript
   // bad
-  const x = y + 5;
+  const x=y+5;
 
   // good
   const x = y + 5;
 
   // bad
-  const isRight = result === 0 ? false : true;
+  const isRight = result === 0? false : true;
 
   // good
   const isRight = result === 0 ? false : true;
 
   // bad - 一元运算符与操作对象间不应有空格
-  const x = !y;
+  const x = ! y;
 
   // good
   const x = !y;
@@ -444,26 +427,30 @@ author:
   ```javascript
   // bad
   function bar() {
-    console.log(foo);
+
+      console.log(foo);
+
   }
 
   // good
   function bar() {
-    console.log(foo);
+      console.log(foo);
   }
 
   // bad
   if (baz) {
-    console.log(qux);
+
+      console.log(qux);
   } else {
-    console.log(foo);
+      console.log(foo);
+
   }
 
   // good
   if (baz) {
-    console.log(qux);
+      console.log(qux);
   } else {
-    console.log(foo);
+      console.log(foo);
   }
   ```
 
@@ -472,29 +459,33 @@ author:
   ```javascript
   // bad
   if (foo) {
-    return bar;
+      return bar;
   }
   return baz;
 
   // good
   if (foo) {
-    return bar;
+      bar;
   }
 
   return baz;
 
   // bad
   const obj = {
-    foo() {},
-    bar() {},
+      foo() {
+      },
+      bar() {
+      },
   };
   return obj;
 
   // good
   const obj = {
-    foo() {},
+      foo() {
+      },
 
-    bar() {},
+      bar() {
+      },
   };
 
   return obj;
@@ -656,12 +647,12 @@ author:
 
   // bad - 未使用参数 y
   function getX(x, y) {
-    return x;
+      return x;
   }
 
   // good
   function getXPlusY(x, y) {
-    return x + y;
+      return x + y;
   }
   ```
 
@@ -700,17 +691,17 @@ author:
   ```javascript
   // bad - 如果权限校验（checkUserPermission）失败，fetchData 是不必要的
   function getData(id) {
-    const data = fetchData(id);
+      const data = fetchData(id);
 
-    if (!checkUserPermission()) {
-      return false;
-    }
+      if (!checkUserPermission()) {
+        return false;
+      }
 
-    if (data.foo === 'bar') {
-      // ...
-    }
+      if (data.foo === 'bar') {
+        // ...
+      }
 
-    return data;
+      return data;
   }
 
   // good
@@ -737,16 +728,16 @@ author:
   // bad
   const foo = 1;
   if (someCondition) {
-    const foo = 2;
-    console.log(foo); // => 2
+      const foo = 2;
+      console.log(foo); // => 2
   }
 
   // good
   const foo = 1;
   if (someCondition) {
-    const bar = 2;
-    console.log(bar); // => 2
-    console.log(foo); // => 1
+      const bar = 2;
+      console.log(bar); // => 2
+      console.log(foo); // => 1
   }
   ```
 
@@ -769,15 +760,15 @@ author:
 
   // bad - arg 已作为函数参数声明
   function myFunc(arg) {
-    var arg = 'foo';
-    console.log(arg);
+      var arg = 'foo';
+      console.log(arg);
   }
   myFunc('bar'); // => 'foo'
 
   // good
   function myFunc(arg) {
-    var otherName = 'foo';
-    console.log(arg);
+      var otherName = 'foo';
+      console.log(arg);
   }
   myFunc('bar'); // => 'bar'
   ```
@@ -795,15 +786,15 @@ author:
 
   // bad - arg 已作为函数参数声明
   function myFunc(arg) {
-    const arg = 'foo';
-    console.log(arg);
+      const arg = 'foo';
+      console.log(arg);
   }
   myFunc('bar'); // => Uncaught SyntaxError: Identifier 'arg' has already been declared
 
   // good
   function myFunc(arg) {
-    const otherName = 'foo';
-    console.log(arg);
+      const otherName = 'foo';
+      console.log(arg);
   }
   myFunc('bar'); // => 'bar'
   ```
@@ -815,7 +806,7 @@ author:
   ```javascript
   // bad - 本例的结果是 let 仅对 a 起到了预想效果，b 和 c 都成了全局变量
   (function test() {
-    let a = (b = c = 1); // 相当于 let a = (b = (c = 1));
+      let a = (b = c = 1); // 相当于 let a = (b = (c = 1));
   })();
 
   console.log(a); // throws ReferenceError
@@ -824,9 +815,9 @@ author:
 
   // good
   (function test() {
-    let a = 1;
-    let b = a;
-    let c = a;
+      let a = 1;
+      let b = a;
+      let c = a;
   })();
 
   console.log(a); // throws ReferenceError
@@ -1053,12 +1044,12 @@ author:
 
   // bad - map 应用于构建一个新数组，单纯想遍历数组应使用 forEach
   myArray.map((item, index) => {
-    myObj[item] = index;
+      myObj[item] = index;
   });
 
   // good
   myArray.forEach((item, index) => {
-    myObj[item] = index;
+      myObj[item] = index;
   });
   ```
 
