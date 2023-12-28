@@ -105,7 +105,7 @@ const init  = async (options: InitOptions) => {
       spawn.sync(npm, ['i', '-D', PKG_NAME], { stdio: 'inherit', cwd });
       // 安装stylelint的依赖
       if (config.enableStylelint) {
-        spawn.sync(npm, ['i', '-D', 'stylelint','stylelint-scss','stylelint-config-go2', 'postcss-html', 'postcss-scss', 'postcss-less'], { stdio: 'inherit', cwd });
+        spawn.sync(npm, ['i', '-D', 'stylelint@14.3.0','stylelint-scss@4.1.0','stylelint-config-go2', 'postcss-html', 'postcss-scss', 'postcss-less'], { stdio: 'inherit', cwd });
       }
       // 安装eslint依赖
       if (config.enableESLint) {
