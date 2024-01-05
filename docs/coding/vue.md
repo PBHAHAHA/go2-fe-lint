@@ -10,37 +10,104 @@ Vue 项目规范以 Vue官方规范（[https://cn.vuejs.org/v2/style-guide/](htt
 > `camelCase`（骆驼拼写法，首字母小写）
 > `kebab-case`（短横拼写法）
 
-## 1. 组件命名规范 :id=naming
-
-A. 组件的文件名称、组件的`name`属性、导入导出组件时，统一使用大驼峰 `PascalCase`  的书写规范
-
-B. 模板中的组件采用短横线 `kebab-case` 的书写规范。
+## 1. 组件规范
 
 
-**1.1 组件文件**
+### 1.1 组件名
+组件名应该始终是多个单词组成（大于等于 2），且命名规范为KebabCase格式。
+这样做可以避免跟现有的以及未来的 HTML 元素相冲突，因为所有的 HTML 元素名称都是单个单词的。
 
-vue组件的文件名使用 `PascalCase`  的拼写方式
-
-```
-components/
-    |- SearchButtonClear.vue
-    |- SearchButtonRun.vue
-    |- SearchInputQuery.vue
-```
-
-**1.2 组件名称**
-
-组件的 `name`使用 `PascalCase`  的拼写方式
-
-```javascript
+```JS
+// bad
 export default {
-    name: 'SearchButton', 
-    // ... 
+    name: 'Todo',
+    // ...
+}
+export default {
+    name: 'todo-item',
+    // ...
 }
 ```
 
-**1.3 引入组件**
+``` js
+// good
+export default {
+    name: 'SearchButtonClear',
+    //...
+}
+```
 
+### 1.2 组件文件名
+名为 pascal-case 格式
+
+```js
+// goods
+components/
+|- my-component.vue
+```
+
+```js
+// bad
+components/
+|- myComponent.vue
+|- MyComponent.vue
+```
+
+### 1.3 基础组件文件名为 base 开头，使用完整单词而不是缩写。
+
+```js
+// goods
+components/
+|- base-button.vue
+|- base-table.vue
+|- base-icon.vue
+```
+
+```js
+// bad
+components/
+|- MyButton.vue
+|- VueTable.vue
+|- Icon.vue
+```
+
+
+### 1.4 和父组件紧密耦合的子组件应该以父组件名作为前缀命名
+```JS
+// good
+components/
+|- todo-list.vue
+|- todo-list-item.vue
+|- todo-list-item-button.vue
+|- user-profile-options.vue （完整单词）
+```
+
+```JS
+components/
+|- TodoList.vue
+|- TodoItem.vue
+|- TodoButton.vue
+|- UProfOpts.vue （使用了缩写）
+```
+
+## 2 模板中使用简单的表达式
+组件模板应该只包含简单的表达式，复杂的表达式则应该重构为计算属性或方法。复杂表达式会让你的模板变得不那么声明式。我们应该尽量描述应该出现的是什么，而非如何计算那个值。而且计算属性和方法使得代码可以重用。
+
+
+```JS
+<template>
+  <p>{{ normalizedFullName }}</p>
+</template>
+
+// 复杂表达式已经移入一个计算属性
+computed: {
+  normalizedFullName: function () {
+    return this.fullName.split(' ').map(function (word) {
+      return word[0].toUpperCase() + word.slice(1)
+    }).join(' ')
+  }
+}
+```
 对于组件的导出/导入，使用大驼峰 `PascalCase`
 
 ```javascript
@@ -52,309 +119,163 @@ export default {
 }
 ```
 
-**1.4 模板中组件名的大小写**
-
-无论是在DOM模板，还是在字符串模板中，统一使用 `kebab-case` 拼写方式，且要手动闭合组件。
-
-```html
-<!-- bad -->
-<MyComponent></MyComponent>
-
-<!-- bad -->
-<my-component/>
-
-<!-- good -->
-<my-component></my-component>
-```
-
-
-## 2. Prop 定义规范 :id=prop
-
-**2.1 在声明 `prop` 时，遵循以下的规范：**
-- 必须指定类型
-- 必须加上注释，表明其含义
-- 必须加上 `required` 或者 `default`，两者二选其一
-- 如果有业务需要，加上 `validator` 验证
-
-```javascript
-props: {
-  // 组件状态，用于控制组件的颜色
-   status: {
-     type: String,
-     required: true,
-     validator: function (value) {
-       return [
-         'succ',
-         'info',
-         'error'
-       ].indexOf(value) !== -1
-     }
-   },
-    // 用户级别，用于显示皇冠个数
-   userLevel：{
-      type: String,
-      required: true
-   }
-}
-```
-
-**2.2 完整单词的组件名**
-
-组件名应该倾向于完整单词而不是缩写。
-
-bad:
-```
-components/ 
-    |- SdSettings.vue
-    |- UProfOpts.vue
-```
-
-good:
-```
-components/ 
-    |- StudentDashboardSettings.vue
-    |- UserProfileOptions.vue
-```
-
-
-**2.3 Prop 名大小写**
-
-在声明 prop 的时候，其命名应该始终使用 `camelCase`，而在模板和 JSX 中应该始终使用 `kebab-case`。
-
-```javascript
-// greetingText
-props: { 
-    greetingText: String
-}
-```
-
-```html
-<!-- greeting-text -->
-<welcome-message greeting-text="hi"></welcome-message>
-```
-
-## 3. Vue 中的书写顺序 :id=order
-
-**3.1 vue 选项的声明顺序**
-
-vue 组件/实例的选项应该遵循统一的顺序：
-
+反例
 ```js
-// 全局的
-- name
-
-// 模板依赖 (模板内使用的资源)
-- components
-- directives
-- filters
-- mixins
-
-// 接口 
-- props    
-
-// 本地状态 (本地的响应式 property)
-- data     
-- computed
-
-// 事件和声明周期
-- watch
-- created
-- mounted
-- updated
-- activited
-- update
-- beforeDestroy
-- destroyed
-
-// 非响应式的 property
-- methods   
-```
-
-so，一个vue单文件组件大致就是这样的：
-
-```vue
-<template> 
-    <div></div> 
+// bad
+<template>
+  <p>
+       {{
+          fullName.split(' ').map(function (word) {
+             return word[0].toUpperCase() + word.slice(1)
+           }).join(' ')
+        }}
+  </p>
 </template>
-
-<script>
-export default { 
-    name: '',
-    components: {}, 
-    data() {
-        return {}; 
-    }, 
-    computed: {},
-    watch: {},
-    mounted() {},
-    methods: {}, 
-}; 
-</script> 
-
-<style lang="scss" scoped>
-</style>
 ```
 
-**3.2 元素属性的顺序**
 
-元素 (包括组件) 的 `attribute` 应该有统一的顺序，原生属性放在前面，指令其次，传参和方法放在最后
 
-```
-- class, id, ref 
-- name, data-*, src, alt, for, type, href, value, max, min 
-- title, placeholder, aria-*, role 
-- required, readonly, disabled 
-- v-model, v-for, key, v-if, v-show, v-bind,:
-- foo="a" bar="b" baz="c"
-```
+## 3 指令都使用缩写形式
 
-## 4. Vue 通用规范 :id=common
-
-**4.1 多个 attribute 的元素应该分多行撰写，每个 attribute 一行**
-
-```html
-<my-component
-    foo="a" 
-    bar="b" 
-    baz="c">
-</my-component>
-```
-
-**4.2 统一使用指令缩写**
-
-```html
+指令推荐都使用缩写形式，(用 : 表示 v-bind: 、用 @ 表示 v-on: 和用 # 表示 v-slot:)
+正例：
+```js
 <input
-    :value="newTodoText"
-    :placeholder="newTodoInstructions"
+  @input="onInput"
+  @focus="onFocus"
 >
-
+```
+反例：
+```js
 <input
-    @input="onInput"
-    @focus="onFocus"
+  v-on:input="onInput"
+  @focus="onFocus"
 >
-
-<template #header> 
-    <h1>Here might be a page title</h1> 
-</template>
-
-<template #footer> 
-    <p>Here's some contact info</p> 
-</template>
 ```
 
-**4.3 公共组件必须保证是独立的, 可复用的，拒绝定制代码。要写组件使用说明。**
 
-```html
-<!--
-  /**
-  * 组件名称
-  * @desc 组件描述
-  * @author 组件作者
-  * @param {Number} [age]    - 参数说明
-  * @param {String} [name] - 参数说明
-  * @example 调用示例
-  *  <person :age="age" :columns="columns" :name="name"></person>
-  */
-   -->
-   
-   <inputFiled 
-        type="number" :placeholder="$t('login.input')" 
-        iconClass="icon-ico_shoujihao"
-        max="11" 
-    />
+## 4 标签顺序保持一致
+单文件组件应该总是让标签顺序保持为 `
+
+正例：
+```js
+<template>...</template>
+<script>...</script>
+<style>...</style>
+```
+反例：
+```js
+<template>...</template>
+<style>...</style>
+<script>...</script>
 ```
 
-**4.4 关于组件内样式**
 
-1）为组件样式设置作用域，保证样式只在当前组件内生效
+## 5.必须为 v-for 设置键值 key
 
+## 6. v-show 与 v-if 选择
+如果运行时，需要非常频繁地切换，使用 v-show ；如果在运行时，条件很少改变，使用 v-if。
+
+## 7.  Vue Router 规范
+
+
+1) 页面跳转数据传递使用路由参数
+页面跳转，例如 A 页面跳转到 B 页面，需要将 A 页面的数据传递到 B 页面，推荐使用 路由参数进行传参，而不是将需要传递的数据保存 vuex，然后在 B 页面取出 vuex 的数据，因为如果在 B 页面刷新会导致 vuex 数据丢失，导致 B 页面无法正常显示数据。
+
+正例：
+```JS
+let id = ' 123';
+this.$router.push({ name: 'userCenter', query: { id: id } });
 ```
-/* bad */ 
-<style>
-.btn-close { 
-    background-color: red;
-} 
-</style> 
-
-/* good */ 
-<style scoped>
-.button-close { 
-    background-color: red; 
-}
-</style>
+2) 使用路由懒加载（延迟加载）机制
+```JS
+{
+    path: '/uploadAttachment',
+    name: 'uploadAttachment',
+    meta: {
+      title: '上传附件'
+    },
+    component: () => import('@/view/components/uploadAttachment/index.vue')
+},
 ```
+3) router 中的命名规范（推荐）
+path、childrenPoints 命名规范采用kebab-case命名规范（尽量vue文件的目录结构保持一致，因为目录、文件名都是kebab-case，这样很方便找到对应的文件）
 
-2）覆盖第三方库的样式时，需加上顶级作用域
+name 命名规范采用KebabCase命名规范且和component组件名保持一致！（因为要保持keep-alive特性，keep-alive按照component的name进行缓存，所以两者必须高度保持一致）
 
+```JS
+// 动态加载
+export const reload = [
+  {
+    path: '/reload',
+    name: 'reload',
+    component: Main,
+    meta: {
+      title: '动态加载',
+      icon: 'icon iconfont'
+    },
+
+    children: [
+      {
+        path: '/reload/smart-reload-list',
+        name: 'SmartReloadList',
+        meta: {
+          title: 'SmartReload',
+          childrenPoints: [
+            {
+              title: '查询',
+              name: 'smart-reload-search'
+            },
+            {
+              title: '执行reload',
+              name: 'smart-reload-update'
+            },
+            {
+              title: '查看执行结果',
+              name: 'smart-reload-result'
+            }
+          ]
+        },
+        component: () =>
+          import('@/views/reload/smart-reload/smart-reload-list.vue')
+      }
+    ]
+  }
+];
 ```
-<style>
-/* bad */ 
-.el-input { width: 254px !important; } 
+4) router 中的 path 命名规范（推荐）
+path除了采用kebab-case命名规范以外，必须以 / 开头，即使是children里的path也要以 / 开头。如下示例
 
-/* good */ 
-.page-user .el-input {
-    width: 254px !important; 
-} 
-/* .customerForm为当前组件的顶级dom */
-</style> 
+目的：
+
+经常有这样的场景：某个页面有问题，要立刻找到这个vue文件，如果不用以/开头，path为parent和children组成的，可能经常需要在router文件里搜索多次才能找到，而如果以/开头，则能立刻搜索到对应的组件
+*
+```JS
+{
+    path: '/file',
+    name: 'File',
+    component: Main,
+    meta: {
+      title: '文件服务',
+      icon: 'ios-cloud-upload'
+    },
+    children: [
+      {
+        path: '/file/file-list',
+        name: 'FileList',
+        component: () => import('@/views/file/file-list.vue')
+      },
+      {
+        path: '/file/file-add',
+        name: 'FileAdd',
+        component: () => import('@/views/file/file-add.vue')
+      },
+      {
+        path: '/file/file-update',
+        name: 'FileUpdate',
+        component: () => import('@/views/file/file-update.vue')
+      }
+    ]
+  }
+  
 ```
-
-3）通用组件不要设置 `scoped` 作用域，这样就没法在其他组件中复写了。
-
-
-**4.5 尽量不在 mounted、created 之类的方法写逻辑。**
-
-把逻辑抽离出去，在生命周期函数中只做引用
-
-**4.6 组件内不要使用复杂的行内表达式**
-
-可以使用 `method` 或是 `computed` 属性来替代其功能。复杂的行内表达式难以阅读，也不能复用。
-
-**4.7 模块的命名尽量和后端保持统一**
-
-模块命名尽量和后端对模块的命名保持一致，这样方便对接api，也保证了前后端的一致性
-
-## 5. Vue Router 规范 :id=router
-
-**5.1 使用懒加载机制**
-
-**5.2 路由都添加 name 字段，路由跳转时，统一使用 `name` 进行跳转，方便管理**
-
-```html
-<router-link :to="{ name: 'home' }">Home</router-link>
-```
-```javascript
-this.$router.push({ name: 'home' })
-```
-
-## 6. Vue 项目目录规范 :id=contents
-
-针对一个完整的 `Vue` 项目，它的目录应遵循以下的规范
-
-```
-src                               源码目录
-|-- api                              所有api接口
-|-- assets                         静态资源，images, icons等
-|-- components                 公用组件
-|-- config                         配置信息
-|-- constants                     常量信息，项目所有Enum, 全局常量等
-|-- directives                     自定义指令
-|-- filters                          过滤器，全局工具
-|-- libs                               外部引用的插件存放及修改文件
-|-- plugins                        插件，全局使用
-|-- router                          路由，统一管理
-|-- store                            vuex, 统一管理
-|-- styles                           样式文件
-|-- views                           视图目录
-|   |-- User                            User模块名
-|   |-- |-- UserList.vue                    User列表页面
-|   |-- |-- UserEdit.vue                   User编辑页面
-|   |-- |-- UserDetail.vue                User详情页面
-|   |-- |-- components                   User模块通用组件文件夹
-|   |-- Employee                         Employee模块
-```
-
-注意事项：
-1. 全局通用的组件放在 `/src/components` 下
-2. 其他业务页面中的组件，放在各自页面下的 `./components` 文件夹下
-3. `components` 和 `views` 下面的文件夹和vue文件，都使用大驼峰 `PascalCase`  的命名规则 （除了`index.vue`）
